@@ -2,10 +2,11 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {Drawer,List,Divider,Typography,useTheme,useMediaQuery} from "@material-ui/core";
 import {WbIncandescentOutlined as IdeaIcon,LabelOutlined as LabelIcon, DeleteOutlined as DeleteIcon, 
-  ArchiveOutlined as ArchiveIcon,RestoreOutlined as RestoreIcon, RestoreOutlined} from "@material-ui/icons";
+  FastfoodRounded as MenuIcon2,ArchiveOutlined as ArchiveIcon, RestoreOutlined, Fastfood} from "@material-ui/icons";
 import DrawerItem from "./drawerItem";
 import { useDispatch, useSelector } from "react-redux";
 import { set_filter, set_label } from "../../Redux/uiRedux/actions";
+import { toggle_drawer } from "../../Redux/uiRedux/actions";
 
 const useStyles = makeStyles(theme => ({
   drawer: {
@@ -32,7 +33,6 @@ export default function NavDrawer() {
   const selectedLabel=useSelector(state => state.theme.label)  
   const selectedFilter = useSelector(state => state.theme.filter);
   const isNavBarOpen=useSelector(state => state.theme.drawer)
-  const toggleNavBar=""
   const dispatch=useDispatch()
 
   const onDrawerItemSelected = (label) => {
@@ -44,6 +44,10 @@ export default function NavDrawer() {
   const onFilterItemSelected = (filter) => {
     dispatch(set_filter(filter))
   }
+
+  const toggleNavBar = ()=>{
+    dispatch(toggle_drawer())
+  };
 
   return (
     <Drawer
@@ -58,6 +62,14 @@ export default function NavDrawer() {
     >
       <div className={classes.toolbar} />
       <List>
+        {isMobile && isNavBarOpen && 
+        <DrawerItem
+        text={"Notes"}
+        isSelected={selectedFilter=="active"}
+        icon={<MenuIcon2 htmlColor={theme.custom.palette.iconColor} />}
+        onClick={toggleNavBar}
+      />
+        }
         <DrawerItem
           text={"Notes"}
           isSelected={selectedFilter=="active"}
