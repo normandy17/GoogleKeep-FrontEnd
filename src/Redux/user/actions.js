@@ -5,9 +5,6 @@ import {
   REGISTER_REQUEST,
   REGISTER_FAILURE,
   LOGOUT,
-  SET_REGISTER,
-  ADD_WATCHLIST,
-  GET_ACTIVE_USER,
   REGISTER_SUCCESS,
 } from "./actionTypes";
 import axios from "axios";
@@ -64,8 +61,7 @@ const registerSuccess = (payload) => {
 
 var i=0
 
-export const getActiveUser = () => (dispatch) => {
-  console.log("refreshing",++i)
+export const getActiveUser = () => (dispatch) => {  
   // dispatch(loginRequest())
   const accessToken = localStorage.getItem('accesstoken');
   axios({

@@ -12,7 +12,7 @@ const PrivateRoute = ({ MyComponent, ...rest }) => {
   const isAuth  = useSelector(state => state.auth.isAuth);
   return isAuth? (
     <Route {...rest} render={(props) => <MyComponent {...props} />} />
-  ) : (<Redirect to="/login" />);
+  ) : (<Redirect to="/home" />);
 };
 
 export default PrivateRoute;

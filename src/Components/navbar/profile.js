@@ -4,6 +4,7 @@ import { Popover, Typography, Avatar, Divider, Button, useTheme } from "@materia
 import {FaceOutlined as FaceIcon,} from "@material-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Redux/user/actions";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   popover: {
@@ -62,11 +63,14 @@ export default function ProfilePopover({ anchorEl, isOpen, onClose }) {
   const email =useSelector(state => state.auth.email)
   const loading = useSelector(state => state.auth.isLoading)  
   const dispatch = useDispatch()
+  const history=useHistory()
 
 
   const doLogout=( )=>{
     dispatch(logout())
+    history.push("/login")
     window.location.reload();
+
  }
 
   return (

@@ -74,9 +74,7 @@ export default function () {
   const isDarkMode=useSelector(state => state.theme.theme)
   const isListView =useSelector(state => state.theme.UI)
   const isNavBarOpen=useSelector(state => state.theme.drawer)
-  const updateUserSettings=()=>{}
-
-
+  
   const toggleNavBar = ()=>{
     dispatch(toggle_drawer())
   };
