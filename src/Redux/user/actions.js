@@ -70,7 +70,7 @@ export const getActiveUser = () => (dispatch) => {
   const accessToken = localStorage.getItem('accesstoken');
   axios({
     method: "GET",
-    url: "http://localhost:8001/api/users",
+    url: "https://google-keep-backend.herokuapp.com/api/users",
     headers: {
       authorization: `Bearer ${accessToken}`,
     },
@@ -90,7 +90,7 @@ export const Loginreq = (email, pass) => (dispatch) => {
   dispatch(loginRequest(email, pass));
   const config = {
     method: "POST",
-    url: "http://localhost:8001/api/login",
+    url: "https://google-keep-backend.herokuapp.com/api/login",
     data: {
       email: email,
       password: pass,
@@ -103,7 +103,7 @@ export const Loginreq = (email, pass) => (dispatch) => {
       localStorage.setItem('accesstoken', res.data.accesstoken)
       return axios({
         method: "GET",
-        url: "http://localhost:8001/api/users",
+        url: "https://google-keep-backend.herokuapp.com/api/users",
         headers: {
           authorization: `Bearer ${res.data.accesstoken}`,
         },
@@ -129,7 +129,7 @@ export const Regreq = (name,email,pass) => (dispatch) => {
   dispatch(registerRequest());
   const config = {
     method: "post",
-    url: "http://localhost:8001/api/users",
+    url: "https://google-keep-backend.herokuapp.com/api/users",
     data: {
       name:name,
       email:email,

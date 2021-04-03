@@ -12,7 +12,7 @@ export const searchQuery = (payload) => (dispatch) => {
   //console.log("searching",payload)
   var config = {
     method: "post",
-    url: "http://localhost:8001/api/tasks/search",
+    url: "https://google-keep-backend.herokuapp.com/api/tasks/search",
     headers: {
       "Content-Type": "application/json",
     },

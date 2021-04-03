@@ -51,7 +51,7 @@ export const getTasks = (id) => dispatch => {
     dispatch(getTasks_Request())
     var config = {
             method: 'get',
-            url: `http://localhost:8001/api/tasks?id=${id}`,           
+            url: `https://google-keep-backend.herokuapp.com/api/tasks?id=${id}`,           
         }    
     return axios(config)
         .then((res) => {
@@ -71,7 +71,7 @@ export const addTask = (data) => dispatch => {
     dispatch(addTask_Request)
     const config = {
         method: 'post',
-        url: `http://localhost:8001/api/Tasks`,
+        url: `https://google-keep-backend.herokuapp.com/api/Tasks`,
         data,
     }
     return axios(config)
@@ -92,7 +92,7 @@ export const editTask = (id,data) => dispatch => {
     //console.log("editing")
     const config = {
         method: 'put',
-        url: `http://localhost:8001/api/Tasks/${id}`,
+        url: `https://google-keep-backend.herokuapp.com/api/Tasks/${id}`,
         data:data
     }
     return axios(config)
