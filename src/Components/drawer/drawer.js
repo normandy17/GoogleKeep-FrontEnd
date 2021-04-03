@@ -61,13 +61,7 @@ export default function NavDrawer() {
       }}
     >
       <div className={classes.toolbar} />
-      <List>
-        {isMobile && isNavBarOpen && 
-        <DrawerItem  
-        icon={<MenuIcon2 htmlColor={theme.custom.palette.iconColor} />}
-        onClick={toggleNavBar}
-      />
-        }
+      <List>       
         <DrawerItem
           text={"Notes"}
           isSelected={selectedFilter=="active"}
