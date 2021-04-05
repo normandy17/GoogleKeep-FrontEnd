@@ -23,8 +23,8 @@ export default function ( {labels=[]} ) {
   const classes = useStyles();
   return (
     <div className={classes.labelsWrapper}>
-      {labels.map(labelItem => (
-        <div key={labelItem} className={classes.labelWrapper}>
+      {labels.map((labelItem,index) => (
+        <div key={index} className={classes.labelWrapper}>
           <Chip label={labelItem} size="small" classes={{ root: classes.label }} />
         </div>
       ))}

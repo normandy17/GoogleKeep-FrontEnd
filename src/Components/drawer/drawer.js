@@ -88,9 +88,9 @@ export default function NavDrawer() {
         </Typography>
       </div>
       <List>
-        {labelItems.map(labelItem => (
+        {labelItems.map((labelItem,index) => (
           <DrawerItem
-            key={labelItem}
+            key={index}
             text={labelItem}
             icon={<LabelIcon htmlColor={theme.custom.palette.iconColor} />}
             isSelected={selectedLabel === labelItem}

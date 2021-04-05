@@ -1,4 +1,4 @@
-import { SEARCHED } from "./actionTypes";
+import { SEARCHED, SEARCH_REQUEST } from "./actionTypes";
 
 const initState = {
   searched:[],
@@ -9,6 +9,16 @@ const initState = {
 export const searchReducer = (state = initState, { type, payload }) => {
    //console.log("type", type, payload);
   switch (type) {
+
+    case SEARCH_REQUEST:{
+      return{
+        ...state,
+        isLoading:true
+      }
+    }
+
+
+
     case SEARCHED:
       var labels = []
             for (var i = 0; i < payload.length; i++) {

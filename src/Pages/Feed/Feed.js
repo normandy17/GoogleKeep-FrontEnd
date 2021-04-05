@@ -8,14 +8,14 @@ import { ThemeProvider, CssBaseline } from "@material-ui/core";
 import { dark, light } from "../../Components/theme";
 import { useDispatch, useSelector } from "react-redux";
 import { getTasks } from "../../Redux/taskRedux/actions";
-
+import {Loading} from "../../Components/Loading/Loading"
 
 
 export const Feed = () => {
 
     const dispatch = useDispatch()
     const id = useSelector(state => state.auth.id);
-    var i=0
+    const loading = useSelector(state => state.tasks.isLoading);    
 
     React.useEffect(() => {        
         dispatch(getTasks(id))
@@ -31,7 +31,8 @@ export const Feed = () => {
                 <NavDrawer />
                 <Container maxWidth={false}>
                     <Box mt={8}>
-                        <NotesArea />
+                        {!loading && <NotesArea />}
+                        {loading && <Loading></Loading>}
                     </Box>
                 </Container>
             </ThemeProvider>

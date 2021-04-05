@@ -45,43 +45,40 @@ export default function ({ noteItem, isEditMode }) {
   const [isCheckboxMode, setCheckboxMode] = useState(noteItem.type=="list"? true:false);
   const [labels, setLabels] = useState(noteItem.labels);  
   
-  React.useEffect(() => {
-    onAfterEdit(noteItem)
-  }, [color,labels,isCheckboxMode]);
 
   const  setNoteInEditMode  = (id)=>{
     dispatch(set_edit(id))
   };
 
-  const updateColor = (color) => {
-    setColor(color);
-    onAfterEdit(noteItem)
+  const updateColor = (color) => {    
+    setColor(color)
+    onAfterEdit(noteItem,{color})
   }
 
   const updateLabels = (labels) => {
     setLabels(labels);  
-    onAfterEdit(noteItem)
+    onAfterEdit(noteItem,{labels})
   }
 
-  const updateCheckboxMode = (isCheckboxMode) => {
+  const updateCheckboxMode = (isCheckboxMode) => {    
+    let type=isCheckboxMode? "list":"note"    
     setCheckboxMode(isCheckboxMode);
-    onAfterEdit(noteItem)
+    onAfterEdit(noteItem,{type})
   }
 
-  const onAfterEdit = (item) => {
+  const onAfterEdit = (item,updated={}) => {
     const id=item._id
     const data={
       user_id:item.user_id,
       title,
       tasks:noteinputs,
-      labels:labels,
-      type:isCheckboxMode? "list":"note",
-      color:color,
+      labels:updated.labels ||labels,
+      type:updated.type ||item.type,
+      color:updated.color || color,
       status:item.status
-    }
+    }    
     dispatch(editTask(id,data))
     dispatch(set_edit(""))
-
   }
 
   return (

@@ -1,11 +1,10 @@
 import React from "react";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { Backdrop, CircularProgress } from "@material-ui/core";
 
-export const Loading=()=> {
-  return (
-    <CircularProgress
-      disableShrink
-      style={{ position: "absolute", top: "50%", left: "50%", margin: "auto", marginTop:"100px",marginBottom:"100px"}}
-    />
-  );
+export const Loading= ()=> {
+    return (
+        <Backdrop open={true} >
+            <CircularProgress color="inherit" />
+        </ Backdrop>
+    )
 }

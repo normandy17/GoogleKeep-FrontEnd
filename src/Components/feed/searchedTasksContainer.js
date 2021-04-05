@@ -101,6 +101,7 @@ export default function () {
 
   return (
     <main>
+      {notes.length==0 && <div style={{width:"100%",height:"100%",textAlign:"center", marginTop:"100px"}}>Uh Oh!<br/>Soory, We coudn't find any notes that match your query, Please try again!</div>}
       <div
         className={
           isMobile || !isNavBarOpen ? classes.contentShift : classes.content
@@ -118,6 +119,7 @@ export default function () {
             width: width
           }}
         >
+          
           {filteredItems && filteredItems.map((noteItem) => {
             return (
               <div

@@ -1,4 +1,4 @@
-import { SEARCHED } from "./actionTypes";
+import { SEARCHED,SEARCH_REQUEST,SEARCH_SUCESS} from "./actionTypes";
 import axios from "axios";
 
 export const searchedData = (payload) => {
@@ -7,9 +7,16 @@ export const searchedData = (payload) => {
     payload,
   };
 };
+ const searchReq = () => {
+  return {
+    type: SEARCH_REQUEST
+  };
+};
+
 
 export const searchQuery = (payload) => (dispatch) => {
   //console.log("searching",payload)
+  dispatch(searchReq())
   var config = {
     method: "post",
     url: "https://google-keep-backend.herokuapp.com/api/tasks/search",

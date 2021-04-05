@@ -4,8 +4,6 @@ import {
     ADD_TASK_REQUEST, ADD_TASK_SUCCESS, ADD_TASK_FAILURE,ADD_LABEL
 } from "./actionTypes";
 
-import { getActiveUser } from "../user/actions";
-var i=0
 const addTask_Request = (payload) => ({
     type: ADD_TASK_REQUEST,
     payload
@@ -46,9 +44,23 @@ export const add_label = (label) => {
 
 
 
-export const getTasks = (id) => dispatch => {
-    console.log("action task", ++i)
+export const getTasks = (id) => dispatch => {    
     dispatch(getTasks_Request())
+    var config = {
+            method: 'get',
+            url: `https://google-keep-backend.herokuapp.com/api/tasks?id=${id}`,           
+        }    
+    return axios(config)
+        .then((res) => {
+            //console.log("result ",res.data)
+            dispatch(getTasks_Success(res.data))
+            return true
+        }).catch((err) => {
+            //console.log(err)
+            dispatch(getTasks_Failure(err))
+        });
+}
+export const getTasks2 = (id) => dispatch => {    
     var config = {
             method: 'get',
             url: `https://google-keep-backend.herokuapp.com/api/tasks?id=${id}`,           
@@ -67,8 +79,6 @@ export const getTasks = (id) => dispatch => {
 
 
 export const addTask = (data) => dispatch => {
-    //console.log("addding")
-    dispatch(addTask_Request)
     const config = {
         method: 'post',
         url: `https://google-keep-backend.herokuapp.com/api/Tasks`,
@@ -78,7 +88,7 @@ export const addTask = (data) => dispatch => {
         .then((res) => {
              //console.log(res.data)
             dispatch(addTask_Success(res.data))
-            dispatch(getTasks(data.user_id))
+            dispatch(getTasks2(data.user_id))
             //alert("Task Added Successfully")
             return true
         }).catch((err) => {
@@ -89,7 +99,6 @@ export const addTask = (data) => dispatch => {
 }
 
 export const editTask = (id,data) => dispatch => {
-    //console.log("editing")
     const config = {
         method: 'put',
         url: `https://google-keep-backend.herokuapp.com/api/Tasks/${id}`,
@@ -97,7 +106,7 @@ export const editTask = (id,data) => dispatch => {
     }
     return axios(config)
         .then((res) => { 
-            dispatch(getTasks(data.user_id))                  
+            dispatch(getTasks2(data.user_id))                  
             return true
         }).catch((err) => {
              //console.log(err)
